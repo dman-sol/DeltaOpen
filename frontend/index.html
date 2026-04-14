@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeltaOpen</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h1>DeltaOpen</h1>
+    <span id="badge-binance" class="badge badge-check">Binance …</span>
+    <span id="badge-bybit"   class="badge badge-check">Bybit …</span>
+  </div>
+
+  <!-- Configure trade -->
+  <div class="card">
+    <h2>Configure Trade</h2>
+    <div class="form-grid">
+      <div>
+        <label for="symbol">Symbol</label>
+        <select id="symbol"><option value="">Loading…</option></select>
+      </div>
+      <div>
+        <label for="first-exchange">First Exchange</label>
+        <select id="first-exchange">
+          <option value="binance">Binance</option>
+          <option value="bybit">Bybit</option>
+        </select>
+      </div>
+      <div>
+        <label for="first-side">First Side</label>
+        <select id="first-side">
+          <option value="long">Long</option>
+          <option value="short">Short</option>
+        </select>
+      </div>
+      <div>
+        <label for="position-size">Position Size (USDT)</label>
+        <input type="number" id="position-size" value="1000" min="1" step="1">
+      </div>
+      <div>
+        <label for="chunk-pct">Chunk Size (%)</label>
+        <input type="number" id="chunk-pct" value="10" min="1" max="100" step="1">
+      </div>
+    </div>
+
+    <div class="checkbox-row">
+      <label>
+        <input type="checkbox" id="auto-reprice" checked>
+        Auto-reprice
+      </label>
+      <div class="inline-field">
+        <label for="reprice-interval" style="margin:0; white-space:nowrap;">Interval</label>
+        <input type="number" id="reprice-interval" value="2" min="0.5" step="0.5">
+        <span>s</span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button id="btn-start">&#9654; Start</button>
+      <button id="btn-cancel" disabled>&#9632; Cancel</button>
+    </div>
+  </div>
+
+  <!-- Live positions -->
+  <div class="card">
+    <h2>Live Positions</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Exchange</th>
+          <th>Side</th>
+          <th>Target</th>
+          <th>Filled</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="positions-tbody">
+        <tr id="row-placeholder">
+          <td colspan="5" style="color:#475569; padding:16px 12px; font-size:0.8rem;">
+            No active trade.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="detail-row" class="detail-row"></div>
+  </div>
+
+  <!-- Activity log -->
+  <div class="card">
+    <h2>Activity Log</h2>
+    <div id="log"></div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
